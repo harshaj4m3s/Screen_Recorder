@@ -27,21 +27,6 @@ def parse_arguments():
     return parser.parse_args()
 
 
-def record_cam(name, cam_size):
-    cam = cv2.VideoCapture(0)
-    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-    out = cv2.VideoWriter('cam_'+name+'.mp4', fourcc, 20.0, cam_size)
-    while cam.isOpened:
-        q, frame = cam.read()
-        if q:
-            frame = cv2.resize(frame, cam_size)
-            out.write(frame)
-            if cv2.waitKey(1) and STOP:
-                break
-        else:
-            break
-
-
 def main():
     '''Records screen and store it in mp4 format with 20 fps by default. 
             Recordings can be found at recordings folder in relative path. 
