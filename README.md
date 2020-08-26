@@ -5,11 +5,10 @@ This script provides a command-line interface for recording the screen. This is 
 (The script supports only Python 3)
 ## Prerequisites
 This should work after the installing the following packages:
-
-    * pyautogui
-    * opencv-python
-    * numpy
-    * keyboard
+* pyautogui
+* opencv-python
+* numpy
+* keyboard
 
 You can just install the required packages with the following command
 ```
@@ -20,6 +19,9 @@ or
 python3 -m pip install -r requirements.txt
 ```
 
+Run the script and it starts recording.
+Press ``ctrl+alt+s`` to stop the screen recording
+Recorded videos can be found at <project folder>/recordings/
 ## To-Do
 Here are the features that I would like to include in the future.
 * add web camera support to screen recording

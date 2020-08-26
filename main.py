@@ -28,7 +28,11 @@ def parse_arguments():
 
 
 def main():
-    ''''''
+    '''Records screen and store it in mp4 format with 20 fps by default. 
+            Recordings can be found at recordings folder in relative path. 
+                Press ctrl+alt+s to STOP recording'''
+    if not os.path.exists(os.path.join(os.getcwd(), 'recordings')):
+        os.mkdir('recordings')
     args = parse_arguments()
     _file_name = args.output
     _include_audio = args.audio
