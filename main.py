@@ -27,6 +27,21 @@ def parse_arguments():
     return parser.parse_args()
 
 
+def record_cam(name, cam_size):
+    cam = cv2.VideoCapture(0)
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+    out = cv2.VideoWriter('cam_'+name+'.mp4', fourcc, 20.0, cam_size)
+    while cam.isOpened:
+        q, frame = cam.read()
+        if q:
+            frame = cv2.resize(frame, cam_size)
+            out.write(frame)
+            if cv2.waitKey(1) and STOP:
+                break
+        else:
+            break
+
+
 def main():
     '''Records screen and store it in mp4 format with 20 fps by default. 
             Recordings can be found at recordings folder in relative path. 
@@ -42,10 +57,24 @@ def main():
     keyboard.add_hotkey('ctrl+alt+s', exit_handler)
     out = cv2.VideoWriter(os.path.join(
         'recordings', _file_name+'.mp4'), fourcc, 20.0, SCREEN)
-    while not STOP:
+    cam = cv2.VideoCapture(0)
+    cam_size = (int(SCREEN.width//4.5), int(SCREEN.height//4.5))
+    while not STOP and cam.isOpened():
+        q, frame_cam = cam.read()
+        if q:
+            frame_cam = np.array(frame_cam)
+            scale_percent = 4.5
+            frame_cam = cv2.resize(frame_cam, cam_size)
+            frame_cam = cv2.cvtColor(frame_cam, cv2.COLOR_BGR2RGB)
+        else:
+            pass
+        x_offset, y_offset = SCREEN.width-20 - \
+            cam_size[0], SCREEN.height-20-cam_size[1]
         img = pyautogui.screenshot()
         frame = np.array(img)
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame[y_offset:y_offset+cam_size[1],
+              x_offset:x_offset+cam_size[0]] = frame_cam
         out.write(frame)
     print('successfully saved to  :  {}.mp4'.format(_file_name))
     cv2.destroyAllWindows()
