@@ -5,10 +5,12 @@ This script provides a command-line interface for recording the screen. This is 
 (The script supports only Python 3)
 ## Prerequisites
 This should work after the installing the following packages:
+
     * pyautogui
     * opencv-python
     * numpy
     * keyboard
+
 You can just install the required packages with the following command
 ```
 pip install -r requirements.txt
