@@ -24,9 +24,9 @@ Press ``ctrl+alt+s`` to stop the screen recording
 Recorded videos can be found at <project folder>/recordings/
 ## To-Do
 Here are the features that I would like to include in the future.
-[x] add web camera support to screen recording
-[ ] add audio support, i.e., both microphone and device audio (currently I am working on this).
-[ ] add GUI support (maybe)
+- [x] add web camera support to screen recording
+- [ ] add audio support, i.e., both microphone and device audio (currently I am working on this).
+- [ ] add GUI support (maybe)
 
 Please don't expect the to-do features in-time because this is kind of fun-time project for me.
 
